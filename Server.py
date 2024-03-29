@@ -68,7 +68,6 @@ def extract_features(file_path, target_duration=2, sr=44100):
 
 mdl = load_model(r'audio_Class.h5')
 
-
 app = Flask(__name__)
 
 @app.route('/upload-audio', methods=['POST'])
@@ -84,7 +83,7 @@ def upload_audio():
     # Example: Extract features from audio and make predictions
     file = extract_audio_sample(file)
     audio_features = extract_features('sample.wav')
-    #os.remove('sample.wav')
+    os.remove('sample.wav')
     audio_features = np.expand_dims(audio_features, axis=0)  # Add batch dimension
     predict = mdl.predict(audio_features)
     # Get the index of the class with the highest probability
@@ -100,6 +99,6 @@ def upload_audio():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=8080)
 
 #https://ttsmaker.com/
