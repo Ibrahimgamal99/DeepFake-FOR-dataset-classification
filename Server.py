@@ -1,9 +1,7 @@
 import librosa,os
 import numpy as np
 import soundfile as sf
-import tensorflow as tf
 from keras.models import load_model
-import IPython.display as ipd
 from flask import Flask, request, jsonify
 
 def extract_audio_sample(audio_path, sample_duration=2):
